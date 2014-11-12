@@ -4,9 +4,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/alex"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name="com.xfc.lovebank.BTApplication">
         <activity
             android:name="com.xfc.lovebank.MainActivity"
             android:label="@string/app_name" >
@@ -16,6 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name="com.xfc.lovebank.widget.LoveBankAppWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/love_bank_appwidget_info" />
+        </receiver>
     </application>
 
 </manifest>
