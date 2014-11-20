@@ -69,7 +69,14 @@ public class BBBaseView extends LinearLayout {
         //BBUIControlNotificationManager.getInstance().onRootSizeChanged(this);
     }
 
+    public void saveState() {
+
+    }
     public View onCreateView() {
         return null;
+    }
+
+    public void onHidView() {
+
     }
 }

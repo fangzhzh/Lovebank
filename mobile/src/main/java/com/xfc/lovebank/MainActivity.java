@@ -5,18 +5,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import com.xfc.lovebank.ui.BBPomodoroView;
 import com.xfc.lovebank.ui.BBUtilsView;
 import com.xfc.lovebank.ui.base.BBBaseView;
 import com.xfc.lovebank.utils.CONST_VALUES;
@@ -63,6 +59,9 @@ public class MainActivity extends ActionBarActivity
         switch (number) {
             case CONST_VALUES.PAGE_INDEX.PAGE_UTILS_INDEX:
                 mTitle = getString(R.string.title_utils);
+                break;
+            case CONST_VALUES.PAGE_INDEX.PAGE_POMODORO_INDEX:
+                mTitle = getString(R.string.title_pomodoro);
                 break;
             case CONST_VALUES.PAGE_INDEX.PAGE_OVERVIEW_INDEX:
                 mTitle = getString(R.string.title_overview);
@@ -126,6 +125,9 @@ public class MainActivity extends ActionBarActivity
          * Returns a new instance of this fragment for the given section
          * number.
          */
+
+        private BBBaseView baseView;
+
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -142,10 +144,13 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             int sectionIdx = getArguments().getInt(ARG_SECTION_NUMBER);
             View rootView;
-            BBBaseView baseView;
             switch (sectionIdx) {
                 case CONST_VALUES.PAGE_INDEX.PAGE_UTILS_INDEX:
                     baseView = new BBUtilsView(getActivity());
+                    rootView = baseView.onCreateView();
+                    break;
+                case CONST_VALUES.PAGE_INDEX.PAGE_POMODORO_INDEX:
+                    baseView = new BBPomodoroView(getActivity());
                     rootView = baseView.onCreateView();
                     break;
                 case CONST_VALUES.PAGE_INDEX.PAGE_OVERVIEW_INDEX:
@@ -166,10 +171,22 @@ public class MainActivity extends ActionBarActivity
         }
 
         @Override
+        public void onDestroyView() {
+            baseView.saveState();
+            super.onDestroyView();
+        }
+
+        @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+
+        @Override
+        public void onPause() {
+            baseView.onHidView();
+            super.onPause();
         }
     }
 

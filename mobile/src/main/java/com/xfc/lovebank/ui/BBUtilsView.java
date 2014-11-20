@@ -1,7 +1,9 @@
 package com.xfc.lovebank.ui;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,7 @@ public class BBUtilsView extends BBBaseView {
     }
 
     private OnClickListener wakeupClick = new OnClickListener() {
+        @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
         @Override
         public void onClick(View v) {
             Calendar beginTime = Calendar.getInstance();
@@ -58,6 +61,7 @@ public class BBUtilsView extends BBBaseView {
     };
 
     private OnClickListener fallAsleepClick = new OnClickListener() {
+        @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
         @Override
         public void onClick(View v) {
             Calendar beginTime = Calendar.getInstance();
@@ -75,6 +79,7 @@ public class BBUtilsView extends BBBaseView {
     };
 
     private OnClickListener legLiftClick = new OnClickListener() {
+        @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
         @Override
         public void onClick(View v) {
             Calendar beginTime = Calendar.getInstance();

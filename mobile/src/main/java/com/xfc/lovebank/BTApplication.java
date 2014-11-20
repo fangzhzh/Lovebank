@@ -2,6 +2,7 @@ package com.xfc.lovebank;
 
 import android.app.Application;
 import com.xfc.lovebank.app.BBLoveBankApplication;
+import com.xfc.lovebank.manager.SoundEngine;
 
 /**
  * @author zhangzf
@@ -11,10 +12,10 @@ public class BTApplication extends Application {
 
     private BBLoveBankApplication application;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
-
         application = new BBLoveBankApplication(this);
     }
 }
