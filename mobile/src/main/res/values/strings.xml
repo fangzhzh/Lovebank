@@ -6,6 +6,16 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="title_overview">overview</string>
+    <string name="title_utils">utils</string>
+    <string name="bt_wake_up">Woke up</string>
+    <string name="bt_fall_asleep">fall asleep</string>
+    <string name="bt_leg_lift">leg lift 30</string>
+    <string name="wake_up_title">woke up %1$s</string>
+    <string name="wake_up_description"> "woke up and open phone record"</string>
+    <string name="sleep_title">fall asleep %1$s</string>
+    <string name="sleep_description">go to bed to go sleep</string>
+    <string name="leg_lift_title"> leg lift %1$s</string>
+    <string name="leg_lift_description">30 leg lift, keep on</string>
     <string name="title_statistics">statistics</string>
     <string name="title_history">history</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

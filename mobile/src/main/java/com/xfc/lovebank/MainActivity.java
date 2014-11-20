@@ -17,6 +17,9 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import com.xfc.lovebank.ui.BBUtilsView;
+import com.xfc.lovebank.ui.base.BBBaseView;
+import com.xfc.lovebank.utils.CONST_VALUES;
 
 
 public class MainActivity extends ActionBarActivity
@@ -52,19 +55,22 @@ public class MainActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, PlaceholderFragment.newInstance(position))
                 .commit();
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
-            case 1:
+            case CONST_VALUES.PAGE_INDEX.PAGE_UTILS_INDEX:
+                mTitle = getString(R.string.title_utils);
+                break;
+            case CONST_VALUES.PAGE_INDEX.PAGE_OVERVIEW_INDEX:
                 mTitle = getString(R.string.title_overview);
                 break;
-            case 2:
+            case CONST_VALUES.PAGE_INDEX.PAGE_STATISTICS_INDEX:
                 mTitle = getString(R.string.title_statistics);
                 break;
-            case 3:
+            case CONST_VALUES.PAGE_INDEX.PAGE_HISTORY_INDEX:
                 mTitle = getString(R.string.title_history);
                 break;
         }
@@ -135,7 +141,27 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             int sectionIdx = getArguments().getInt(ARG_SECTION_NUMBER);
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView;
+            BBBaseView baseView;
+            switch (sectionIdx) {
+                case CONST_VALUES.PAGE_INDEX.PAGE_UTILS_INDEX:
+                    baseView = new BBUtilsView(getActivity());
+                    rootView = baseView.onCreateView();
+                    break;
+                case CONST_VALUES.PAGE_INDEX.PAGE_OVERVIEW_INDEX:
+                case CONST_VALUES.PAGE_INDEX.PAGE_STATISTICS_INDEX:
+                case CONST_VALUES.PAGE_INDEX.PAGE_HISTORY_INDEX:
+//                    rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                    baseView = new BBUtilsView(getActivity());
+                    rootView = baseView.onCreateView();
+                    break;
+                default:
+                    baseView = new BBUtilsView(getActivity());
+                    rootView = baseView.onCreateView();
+                    // rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                    break;
+            }
+
             return rootView;
         }
 
