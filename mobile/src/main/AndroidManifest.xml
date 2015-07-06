@@ -8,9 +8,9 @@
         android:icon="@drawable/alex"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name="com.xfc.lovebank.BTApplication">
+        android:name="com.xfc.lovebank.BTApplication_">
         <activity
-            android:name="com.xfc.lovebank.MainActivity"
+            android:name="com.xfc.lovebank.ui.home.HomeActivity_"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
