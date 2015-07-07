@@ -104,6 +104,7 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[]{
                         getString(R.string.title_utils),
                         getString(R.string.title_overview),
+                        getString(R.string.title_pomodoro),
                         getString(R.string.title_statistics),
                         getString(R.string.title_history),
                 }));
