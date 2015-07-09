@@ -1,14 +1,17 @@
 package com.xfc.lovebank.ui.home;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.xfc.lovebank.BTApplication;
+import com.xfc.lovebank.CoolStuff;
 import com.xfc.lovebank.R;
 import com.xfc.lovebank.ui.base.*;
 import com.xfc.lovebank.utils.BBAppLogger;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -24,7 +27,11 @@ public class HomeActivity extends BaseActivity {
     @Inject
     HomePresenter   mPresenter;
 
+    @ViewById(R.id.helloworld)
+    TextView hellowView;
+
     HomeComponent mComponent;
+
 
     @Override
     protected void onCreateUI(Bundle bundle) {
@@ -33,7 +40,10 @@ public class HomeActivity extends BaseActivity {
 
     @AfterViews
     void afterView() {
+        CoolStuff stuff = new CoolStuff();
+
         BBAppLogger.d("injected by activity:" + application.toString());
+        hellowView.setText(stuff.subfix(hellowView.getText().toString()));
         mPresenter.printLog();
     }
 
